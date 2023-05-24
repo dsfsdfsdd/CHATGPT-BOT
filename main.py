@@ -42,6 +42,14 @@ async def get_result(message: types.Message):
     result = chatgpt_result(message.text)
 
     await message.reply(result)
+   
+
+@dp.message_handler(commands=['admin'])
+async def admin(message: types.Message):
+    cursor.execute("SELECT * FROM Data")
+    rows = cursor.fetchall()
+
+    await message.answer(f"Umumiy: {len(rows)}")
     
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
