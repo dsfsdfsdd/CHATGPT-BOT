@@ -1,7 +1,7 @@
 import openai
-import config
+import os
 
-openai.api_key = config.OPENAI_API
+openai.api_key = os.getenv("OPENAI_API")
 model_engine = "text-davinci-003"
 max_tokens = 256
 
