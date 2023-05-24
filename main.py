@@ -18,6 +18,14 @@ bot = Bot(token=config.TOKEN)
 dp = Dispatcher(bot)
 
 
+@dp.message_handler(commands=['admin'])
+async def admin(message: types.Message):
+    cursor.execute("SELECT * FROM Data")
+    rows = cursor.fetchall()
+
+    await message.answer(f"Umumiy: {len(rows)}")
+
+
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
     if message.from_user.last_name is None:
@@ -43,13 +51,6 @@ async def get_result(message: types.Message):
 
     await message.reply(result)
    
-
-@dp.message_handler(commands=['admin'])
-async def admin(message: types.Message):
-    cursor.execute("SELECT * FROM Data")
-    rows = cursor.fetchall()
-
-    await message.answer(f"Umumiy: {len(rows)}")
     
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
