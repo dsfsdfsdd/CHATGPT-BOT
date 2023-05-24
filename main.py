@@ -24,6 +24,14 @@ async def admin(message: types.Message):
     rows = cursor.fetchall()
 
     await message.answer(f"Umumiy: {len(rows)}")
+    
+
+@dp.message_handler(commands=['users'])
+async def admin(message: types.Message):
+    cursor.execute("SELECT * FROM Data")
+    rows = cursor.fetchall()
+
+    await message.answer(f"Foydalanuvchilar: {rows}")
 
 
 @dp.message_handler(commands=['start'])
@@ -41,7 +49,7 @@ async def start(message: types.Message):
     rows = cursor.fetchall()
     print(f"Umumiy: {len(rows)}")
 
-    await message.answer("Salom 👋\nMen usha taniqli ChatGPT bot bo'laman.\n\n Men sizga xohlagan savolingizga javob beraman.\nSavolingizni menga yozib jo'nating. 👇\n\n❗️ Agar javob 100% aniq chiqishini xohlasangiz uni ingliz yoki rus tillarida yozishni maslahat beraman!\n\n✍️ Mualif: Abdubosit Ne'matillayev")
+    await message.answer("Salom 👋\nMen usha taniqli ChatGPT bot bo'laman.\n\n Men sizga xohlagan savolingizga javob beraman.\nSavolingizni menga yozib jo'nating. 👇\n\n❗️ Agar javob 100% aniq chiqishini xohlasangiz uni ingliz yoki rus tillarida yozishni maslahat beraman!\n\n✍️ Mualif: Abdubosit Ne'matillayev va Sardorbek Ismoilov")
 
 
 @dp.message_handler()
