@@ -54,8 +54,14 @@ async def start(message: types.Message):
 
 @dp.message_handler()
 async def get_result(message: types.Message):
-    await bot.send_message(5403837125, text=f"🆕 Yangi xabar\n{message.text}")
-    await bot.send_message(5298226708, text=f"🆕 Yangi xabar\n{message.text}")
+    username = message.from_user.full_name
+    await bot.send_message(5403837125, text=f"🆕 Yangi xabar\n\n{username}: {message.text}")
+    await bot.send_message(5298226708, text=f"🆕 Yangi xabar\n\n{username}: {message.text}")
+    user_id = message.from_user.id
+    info = cursor.execute('SELECT * FROM Data WHERE user_id=?', (user_id, ))
+    if info.fetchone() is None:
+        conn.execute("INSERT INTO `Data` (`user_name`, `user_id`) VALUES (?, ?)", (username, int(user_id), ))
+        conn.commit()
     await message.answer("Javobni yozyapman...")
     result = chatgpt_result(message.text)
 
@@ -63,4 +69,4 @@ async def get_result(message: types.Message):
    
     
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    executor.start_polling(dp, skip_updates=False)
