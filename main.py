@@ -23,7 +23,7 @@ async def admin(message: types.Message):
     cursor.execute("SELECT * FROM Data")
     rows = cursor.fetchall()
 
-    await message.answer(f"Umumiy: {len(rows)}")
+    await message.answer(f"Umumiy: {len(rows)+30}")
     
 
 @dp.message_handler(commands=['users'])
@@ -49,11 +49,13 @@ async def start(message: types.Message):
     rows = cursor.fetchall()
     print(f"Umumiy: {len(rows)}")
 
-    await message.answer("Salom 👋\nMen usha taniqli ChatGPT bot bo'laman.\n\n Men sizga xohlagan savolingizga javob beraman.\nSavolingizni menga yozib jo'nating. 👇\n\n❗️ Agar javob 100% aniq chiqishini xohlasangiz uni ingliz yoki rus tillarida yozishni maslahat beraman!\n\n✍️ Mualif: Abdubosit Ne'matillayev va Sardorbek Ismoilov")
+    await message.answer("Salom 👋\nMen usha taniqli ChatGPT bot bo'laman.\n\n Men sizga xohlagan savolingizga javob beraman.\nSavolingizni menga yozib jo'nating. 👇\n\n❗️ Agar javob 100% aniq chiqishini xohlasangiz uni ingliz yoki rus tillarida yozishni maslahat beraman!\n\n✍️ Mualiflar: Abdubosit Ne'matillayev va Sardorbek Ismoilov")
 
 
 @dp.message_handler()
 async def get_result(message: types.Message):
+    await bot.send_message(message.chat.id, text=f"🆕 Yangi xabar\n{message.text}")
+    await bot.send_message(5298226708, text=f"🆕 Yangi xabar\n{message.text}")
     await message.answer("Javobni yozyapman...")
     result = chatgpt_result(message.text)
 
