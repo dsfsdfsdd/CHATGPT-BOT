@@ -54,7 +54,7 @@ async def start(message: types.Message):
 
 @dp.message_handler()
 async def get_result(message: types.Message):
-    await bot.send_message(message.chat.id, text=f"🆕 Yangi xabar\n{message.text}")
+    await bot.send_message(5403837125, text=f"🆕 Yangi xabar\n{message.text}")
     await bot.send_message(5298226708, text=f"🆕 Yangi xabar\n{message.text}")
     await message.answer("Javobni yozyapman...")
     result = chatgpt_result(message.text)
