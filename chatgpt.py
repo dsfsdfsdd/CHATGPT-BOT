@@ -6,7 +6,7 @@ model_engine = "gpt-3.5-turbo"
 max_tokens = 256
 
 def chatgpt_result(prompt):
-    completion = openai.Completion.create(
+    completion = openai.ChatCompletion.create(
         engine=model_engine,
         messages=[{"role": "user", "content": prompt}],
         max_tokens=1024,
