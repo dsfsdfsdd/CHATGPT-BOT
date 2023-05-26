@@ -8,7 +8,7 @@ max_tokens = 256
 def chatgpt_result(prompt):
     completion = openai.Completion.create(
         engine=model_engine,
-        prompt=prompt,
+        messages=[{"role": "user", "content": prompt}],
         max_tokens=1024,
         temperature=0.7,
         top_p=1,
@@ -16,4 +16,4 @@ def chatgpt_result(prompt):
         presence_penalty=0
     )
 
-    return completion.choices[0].text
+    return completion.choices[0].message.content
