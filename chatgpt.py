@@ -8,7 +8,7 @@ max_tokens = 256
 def chatgpt_result(prompt):
     completion = openai.ChatCompletion.create(
         engine=model_engine,
-        messages=[{"role": "user", "content": prompt}],
+        prompt=[{"role": "user", "content": prompt}],
         max_tokens=1024,
         temperature=0.7,
         top_p=1,
