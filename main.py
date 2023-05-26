@@ -23,7 +23,7 @@ async def admin(message: types.Message):
     cursor.execute("SELECT * FROM Data")
     rows = cursor.fetchall()
 
-    await message.answer(f"Umumiy: {len(rows)+30}")
+    await message.answer(f"Umumiy: {len(rows)+55}")
     
 
 @dp.message_handler(commands=['users'])
