@@ -2,7 +2,7 @@ import openai
 import os
 
 openai.api_key = os.getenv("OPENAI_API")
-model_engine = "text-davinci-003"
+model_engine = "gpt-3.5-turbo"
 max_tokens = 256
 
 def chatgpt_result(prompt):
